@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciar Sesión</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+
+<body>
+    <div class="container">
+        <h3>Iniciar Sesión</h3>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <div class="mb-3">
+                {% for category, message in messages %}
+                    {% if category == 'danger' %}
+                        <div class="alert alert-{{ category }} text-center">{{ message }}</div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endwith %}
+
+    <form method="POST">
+        <div>
+            <input type="email" class="input" id="correo" name="correo" placeholder="Ingrese su correo" required>
+        </div>
+    
+        <div>
+            <input type="password" class="input" id="contrasena" name="contrasena" placeholder="Ingrese su contraseña" required>
+        </div>
+    
+        <a href="{{ url_for('register') }}" class="link">Regístrate</a>
+        <br>
+        <button type="submit" class="button">Iniciar Sesión</button>
+    </form>
+    
+    </div>
+</body>
+</html>

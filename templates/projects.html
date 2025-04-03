@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mis Proyectos</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}?v=1.0">
+
+</head>
+<body>
+    <div class="top-bar">
+        <span class="menu-icon" onclick="toggleNav()">&#9776;</span>
+        <div class="user-info">
+            {% if session.get('username') %}
+                <span>Bienvenido, {{ session['username'] }}</span>
+            {% endif %}
+        </div>
+    </div>
+
+    <div id="mySidebar" class="sidebar">
+        <a href="{{ url_for('index') }}">Inicio</a>
+        <a href="{{ url_for('projects') }}">Proyectos</a>
+        <a href="{{ url_for('lenguages') }}">Lenguajes</a>
+        <a href="{{ url_for('mapa') }}">Mapa del sitio</a>
+        <a href="{{ url_for('contact') }}">Contacto</a>
+        <a href="{{ url_for('logout') }}">Cerrar Sesión</a>
+    </div>
+    
+    <script>
+        function toggleNav() {
+            var sidebar = document.getElementById("mySidebar");
+            var sidebarWidth = sidebar.style.width;
+    
+            if (sidebarWidth === "250px") {
+                sidebar.style.width = "0"; 
+            } else {
+                sidebar.style.width = "250px"; 
+            }
+        }
+    </script>
+
+    <div class="projects-container">
+        <a href="{{ url_for('project1') }}" class="project-link">
+            <div class="project-card">
+                <img src="{{ url_for('static', filename='images/agencia.jpg') }}" alt="Proyecto 1">
+                <div class="project-info">
+                    <h3>Agencia de Autos</h3>
+                    <h4>Aplicación de escritorio que lleva el inventario de una agencia de autos</h4>
+                </div>
+            </div>
+        </a>
+        
+        <a href="{{ url_for('project2') }}" class="project-link">
+            <div class="project-card">
+                <img src="{{ url_for('static', filename='images/image.jpg') }}" alt="Proyecto 2">
+                <div class="project-info">
+                    <h3>Boleto Tren</h3>
+                    <h4>Aplicación Movil para comprar o ver boletos disponibles de tren</h4>
+                </div>
+            </div>
+        </a>
+
+        <a href="{{ url_for('project3') }}" class="project-link">
+        <div class="project-card">
+            <img src="{{ url_for('static', filename='images/person.jpg') }}" alt="Proyecto 2">
+            <div class="project-info">
+                <h3>Proyecto 3</h3>
+                <h4>Proyecto 3</h4>
+            </div>
+        </div>
+        </a>
+
+       
+    </div>
+
+</body>
+</html>

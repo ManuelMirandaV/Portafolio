@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Portafolio</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}?v=1.0">
+</head>
+<body>
+    <div class="top-bar">
+        <span class="menu-icon" onclick="toggleNav()">&#9776;</span>
+        <div class="user-info">
+            {% if session.get('username') %}
+                <span>Bienvenido, {{ session['username'] }}</span>
+            {% endif %}
+        </div>
+    </div>
+
+    <div id="mySidebar" class="sidebar">
+        <a href="{{ url_for('index') }}">Inicio</a>
+        <a href="{{ url_for('projects') }}">Proyectos</a>
+        <a href="{{ url_for('lenguages') }}">Lenguajes</a>
+        <a href="{{ url_for('mapa') }}">Mapa del sitio</a>
+        <a href="{{ url_for('contact') }}">Contacto</a>
+        <a href="{{ url_for('logout') }}">Cerrar Sesión</a>
+    </div>
+    
+    <script>
+        function toggleNav() {
+            var sidebar = document.getElementById("mySidebar");
+            var sidebarWidth = sidebar.style.width;
+    
+            if (sidebarWidth === "250px") {
+                sidebar.style.width = "0"; 
+            } else {
+                sidebar.style.width = "250px"; 
+            }
+        }
+    </script>
+    
+
+    <div class="container">
+        <img src="{{ url_for('static', filename='images/manuel.jpg') }}" alt="Descripción de la imagen" width="150">
+        <h1 id="about">Manuel Miranda</h1>
+        <p class="section" style="text-align: justify;">
+            Soy Manuel Alejandro Miranda Vizcarra, un joven estudiante de universidad que busca crecer laboralmente en el campo
+            del desarrollo de software y está en la búsqueda de oportunidades laborales para aprovecharlas al máximo, estudiando y 
+            trabajando en nuevos proyectos y nuevos lenguajes, tomando cursos y practicando para mejorar mis debilidades, así como seguir estudiando
+            todo lo nuevo que salga en cuestión del desarrollo de la tecnología.
+        </p>
+
+        <p class="section" id="school"><strong>Escuela:</strong><br>
+            Universidad Tecnológica de Hermosillo
+        </p>
+
+        <div class="section projects" id="projects">
+            <h2>Proyectos</h2>
+            <a href="https://github.com/ManuelMirandaV">https://github.com/ManuelMirandaV</a>
+        </div>
+    </div>
+</body>
+</html>

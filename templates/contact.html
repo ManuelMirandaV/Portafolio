@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Portafolio</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}?v=1.0">
+
+</head>
+<body>
+
+    <div class="top-bar">
+        <span class="menu-icon" onclick="toggleNav()">&#9776;</span>
+        <div class="user-info">
+            {% if session.get('username') %}
+                <span>Bienvenido, {{ session['username'] }}</span>
+            {% endif %}
+        </div>
+    </div>
+
+    <div id="mySidebar" class="sidebar">
+        <a href="{{ url_for('index') }}">Inicio</a>
+        <a href="{{ url_for('projects') }}">Proyectos</a>
+        <a href="{{ url_for('lenguages') }}">Lenguajes</a>
+        <a href="{{ url_for('mapa') }}">Mapa del sitio</a>
+        <a href="{{ url_for('contact') }}">Contacto</a>
+        <a href="{{ url_for('logout') }}">Cerrar Sesión</a>
+    </div>
+    
+    <script>
+        function toggleNav() {
+            var sidebar = document.getElementById("mySidebar");
+            var sidebarWidth = sidebar.style.width;
+    
+            if (sidebarWidth === "250px") {
+                sidebar.style.width = "0"; 
+            } else {
+                sidebar.style.width = "250px"; 
+            }
+        }
+    </script>
+
+
+    <div class="container">
+        <img src="{{ url_for('static', filename='images/manuel.jpg') }}" alt="Descripción de la imagen" width="150">
+
+        <h1 id="about">Manuel Miranda</h1> 
+
+        <div class="section" id="contact">
+            <h2>Contacto</h2>
+            <a href="{{ url_for('email') }}">
+            <img src="https://cdn-icons-png.flaticon.com/512/732/732200.png" alt="Email" width="30" style="margin-right: 10px;">
+        </a>
+            <a href="https://www.instagram.com/manuelmiranda02/?locale=my&hl=ar" target="_blank">
+                <img src="https://cdn-icons-png.flaticon.com/512/1384/1384063.png" alt="Instagram" width="30" style="margin-right: 10px;">
+            </a>
+            <a href="https://www.tiktok.com/@manuelmiranda" target="_blank">
+                <img src="https://cdn-icons-png.flaticon.com/512/3046/3046121.png" alt="TikTok" width="30" style="margin-right: 10px;">
+            </a>
+            <a href="https://github.com/ManuelMirandaV" target="_blank">
+                <img src="https://cdn-icons-png.flaticon.com/512/2111/2111432.png" alt="GitHub" width="30" style="margin-right: 10px;">
+            </a>
+            <a href="https://discord.com/users/ELREVIRGEN" target="_blank">
+                <img src="https://cdn-icons-png.flaticon.com/512/5968/5968756.png" alt="Discord" width="30">
+            </a>            
+        </div>
+    </div>
+
+</body>
+</html>

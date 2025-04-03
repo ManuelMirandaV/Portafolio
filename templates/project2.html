@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agencia de autos</title>
+
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}?v=1.0">
+</head>
+<body>
+    <div class="menu">
+        <a href="{{ url_for('projects') }}" class="flecha">&#8592;</a>   
+     </div>
+
+     <div class="container">
+        <div class="content">
+            <h1>Boleto de Tren</h1>
+            <img src="{{ url_for('static', filename='images/tren.jpg') }}" alt="Auto en exhibición">
+
+        </div>
+        <p>
+            Proyecto de Boleto de Tren desarrollada en Kotlin para moviles, consiste en ver los destinos disponibles
+            para un viaje en tren, pudiendo asi crear tu cuenta, y comprar boletos.
+        </p>
+    </div>
+</body>
+</html>

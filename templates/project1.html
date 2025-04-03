@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agencia de autos</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}?v=1.0">
+    
+</head>
+
+<body>
+    <div class="menu">
+        <a href="{{ url_for('projects') }}" class="flecha">&#8592;</a>   
+     </div>
+    
+    <div class="container">
+        <div class="content">
+            <h1>Agencia de Autos</h1>
+            <img src="{{ url_for('static', filename='images/imagee.jpg') }}" alt="Auto en exhibición">
+
+        </div>
+        <p>
+            Proyecto de agencia de autos desarrollada en C# para escritorio, consiste en un inventario de una agencia que lleva el control de inventario de los carros, ventas realizadas y sus clientes que tiene dicha agencia, se encarga de ver que clientes son mas potenciales
+            y mayor credito disponible tienen.
+        </p>
+    </div>
+
+    <div class="container">
+        <div class="content">
+            <h1>Tabla de Clientes</h1>
+            <img src="static/images/Clientes.jpg" alt="Auto en exhibición">
+        </div>
+        <p>
+            La tabla de clientes muestra informacion general de los clientes, como puede ser nombre, domicilio, ciudad y su limite de credito,
+            dando asi un conteo general de los clientes.
+        </p>
+        <img src="static/images/codigoCli.jpg" alt="Tabla de clientes" class="extra-image " >
+        <p>
+            Aqui podemos ver un poco de codigo sobre esa tabla.
+        <p>
+    </div>
+
+    <div class="section" id="contact">
+        <h2>Lenguaje</h2>
+        <a href="https://dotnet.microsoft.com/es-es/languages/csharp">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/4/4f/Csharp_Logo.png" alt="C# Logo" width="100">
+        </a>
+    </div>
+</body>
+</html>
