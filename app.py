@@ -8,6 +8,10 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from flask import request, session, flash, redirect, url_for, render_template
+from flask import Flask, render_template, request, redirect, url_for, flash
+import smtplib
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
 
 
 app = Flask(__name__)
@@ -55,10 +59,6 @@ def project2():
 @app.route('/project3')
 def project3():
     return render_template('project3.html')
-
-@app.route('/email')
-def email():
-    return render_template('email.html')
 
 @app.route('/mapa')
 def mapa():
@@ -141,6 +141,46 @@ if check_password_hash(hashed_password, "miclave"):
 else:
     print("Contraseña incorrecta.")
     
+    
+    
+SMTP_SERVER = "smtp.gmail.com"  
+SMTP_PORT = 587  
+EMAIL_PREDETERMINADO = "pmanuelmirandau@gmail.com" 
+EMAIL_PASSWORD = "lgqb nbsu zavs vmye"  
+
+@app.route('/email', methods=['GET', 'POST'])
+def email():
+    if request.method == 'POST':
+        email_remitente = request.form['email']  
+        mensaje = request.form['mensaje']
+
+        if not email_remitente or not mensaje:
+            flash("Todos los campos son obligatorios", "error")
+            return redirect(url_for('email'))  
+
+        try:
+        
+            msg = MIMEMultipart()
+            msg['From'] = email_remitente 
+            msg['To'] = EMAIL_PREDETERMINADO
+            msg['Subject'] = "Nuevo mensaje de contacto"
+            
+            cuerpo = f"Has recibido un mensaje de {email_remitente}:\n\n{mensaje}"
+            msg.attach(MIMEText(cuerpo, 'plain'))
+
+            server = smtplib.SMTP(SMTP_SERVER, SMTP_PORT)
+            server.starttls()  
+            server.login(EMAIL_PREDETERMINADO, EMAIL_PASSWORD)  
+            server.sendmail(email_remitente, EMAIL_PREDETERMINADO, msg.as_string())
+            server.quit()
+
+            flash("Correo enviado exitosamente", "success")
+        except Exception as e:
+            flash(f"Error al enviar el correo: {str(e)}", "error")
+
+        return redirect(url_for('email'))  
+
+    return render_template('email.html')  
 
 if __name__ == '__main__':
     app.run(debug=True)

@@ -8,19 +8,44 @@
 </head>
 <body>
     <div class="menu">
-        <a href="{{ url_for('contact') }}" class="flecha">&#8592;</a>   
-     </div>
+        <!-- Enlace a la página anterior (si lo necesitas) -->
+        <a href="{{ url_for('index') }}" class="flecha">&#8592; Volver</a>
+    </div>
+
     <div class="container2">
         <h3>Enviar un correo</h3>
 
+        <!-- Formulario para enviar el mensaje -->
         <form method="POST">
-
+            <!-- Campo para ingresar el correo del remitente -->
             <div class="mb-3">
-                <textarea class="input" id="mensaje" name="mensaje" placeholder="Ingrese su mensaje" required></textarea>
-            </div>            
+                <label for="email" class="form-label">Tu correo:</label>
+                <input type="email" class="input" id="email" name="email" placeholder="Ingresa tu correo" required>
+            </div>
 
+            <!-- Campo para ingresar el mensaje -->
+            <div class="mb-3">
+                <textarea class="input" id="mensaje" name="mensaje" placeholder="Escribe tu mensaje" required></textarea>
+            </div>
+
+            <!-- Botón para enviar el formulario -->
             <button type="submit" class="button">Enviar</button>
         </form>
     </div>
+
+    <!-- Mostrar mensajes flash (errores o éxito) -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <div class="flash-messages">
+                {% for category, message in messages %}
+                    <div class="flash {{ category }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endwith %}
 </body>
+
+
 </html>
